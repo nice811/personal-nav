@@ -1,0 +1,25 @@
+.footer {
+  background: var(--bg-tertiary);
+  border-top: 1px solid var(--border-light);
+  padding: var(--spacing-xl) 0;
+  margin-top: auto;
+
+  .footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+    text-align: center;
+
+    .copyright {
+      color: var(--text-secondary);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .copyright-default {
+      color: var(--text-tertiary);
+      font-size: 13px;
+      letter-spacing: 0.02em;
+    }
+  }
+}

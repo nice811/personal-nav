@@ -1,0 +1,6 @@
+<div class="mt-10">
+  <p *ngIf="!isSelfDevelop">TOKEN: {{ token }}</p>
+  <p *ngIf="!isSelfDevelop">{{ $t('_devBranch') }}: {{ config.branch }}</p>
+  <p *ngIf="!isSelfDevelop">{{ $t('_prevDevTime') }}: {{ date }}</p>
+  <p>{{ $t('_curVer') }}: <img [src]="currentVersionSrc" /></p>
+</div>

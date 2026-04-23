@@ -1,0 +1,28 @@
+<nz-modal
+  [(nzVisible)]="visible"
+  [nzTitle]="$t('_authLogin')"
+  [nzOkLoading]="submitting"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="login()"
+>
+  <ng-container *nzModalContent>
+    <p>{{ $t('_inputTokenMsg') }}</p>
+    <input
+      nz-input
+      [(ngModel)]="token"
+      autofocus
+      (keyup)="onKey($event)"
+      #input
+      [placeholder]="isSelfDevelop ? 'Password' : 'Token'"
+    />
+    <div class="mt-4" *ngIf="showImgToken">
+      <input
+        nz-input
+        [(ngModel)]="imageToken"
+        autofocus
+        (keyup)="onKey($event)"
+        placeholder="Image token"
+      />
+    </div>
+  </ng-container>
+</nz-modal>

@@ -1,0 +1,166 @@
+<div class="index-wrapper dark-bg">
+  <header class="top-header">
+    <div class="header-inner">
+      <div class="logo-area">
+        <img
+          *ngIf="commonService.settings().favicon"
+          [src]="commonService.settings().favicon"
+          class="logo-img"
+          draggable="false"
+        />
+        <span class="logo-text">AI工具导航站</span>
+      </div>
+
+      <div class="header-search">
+        <app-search />
+      </div>
+
+      <div class="header-actions">
+        <button
+          nz-button
+          nzType="primary"
+          class="action-btn"
+          (click)="openCreateWebModal()"
+          *ngIf="commonService.isLogin || commonService.permissions.create"
+        >
+          {{ commonService.isLogin ? $t('_add') : $t('_apply') }}
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="main-content">
+    <div class="light-box">
+      <div
+        class="component-box hidden-scrollbar"
+        *ngIf="commonService.settings().components.length"
+        [ngStyle]="{ width: componentMaxWidth }"
+      >
+        <component-group #componentChild direction="column"></component-group>
+      </div>
+
+      <main
+        class="homepage dark-border-color dark-bg w-full"
+      >
+        <div
+          #parent
+          *ngIf="commonService.navs().length"
+          class="category-nav dark-bg dark-border-color"
+        >
+          <div class="category-scroll">
+            <span
+              #item
+              *ngFor="
+                let item of commonService.navs().slice(0, commonService.overIndex);
+                index as i;
+                trackBy: commonService.trackByItem
+              "
+              (click)="handleClickTop($event, item)"
+              [class.active]="commonService.oneIndex === i"
+              [class.dark-text-active]="commonService.oneIndex === i"
+              class="category-item dark-text"
+            >
+              {{ item.title }}
+            </span>
+            <app-web-more-menu
+              *ngIf="commonService.overIndex < commonService.navs().length"
+              [data]="commonService.navs().slice(commonService.overIndex, 99999)"
+              [index]="commonService.overIndex"
+              [page]="commonService.oneIndex"
+              (onClick)="commonService.handleClickClass($event)"
+            />
+          </div>
+        </div>
+
+        <section class="index-section select-none dark-bg">
+          <div
+            class="sidebar dark-bg dark-border-color auto-scrollbar"
+            *ngIf="
+              commonService.navs()[commonService.oneIndex] &&
+              commonService.navs()[commonService.oneIndex].nav.length > 1
+            "
+          >
+            <div
+              class="tag dark-text"
+              [class.active]="commonService.twoIndex === i"
+              [class.dark-item-active]="commonService.twoIndex === i"
+              (click)="commonService.handleClickClass(item.id)"
+              *ngFor="
+                let item of commonService.navs()[commonService.oneIndex].nav;
+                index as i;
+                trackBy: commonService.trackByItem
+              "
+            >
+              {{ item.title }}
+            </div>
+          </div>
+
+          <div class="main" id="main-scroll">
+            <div
+              class="px-2 sticky top-0 left-0 z-10"
+              *ngIf="commonService.currentList.length > 1"
+            >
+              <app-class-tabs
+                [data]="commonService.currentList"
+                selector="#main-scroll"
+              />
+            </div>
+
+            <div *ngIf="commonService.currentList.length > 0; else noData">
+              <nz-spin
+                nzSimple
+                *ngIf="commonService.sliceMax === 0"
+                class="position-center"
+              ></nz-spin>
+              <div
+                *ngFor="
+                  let item of commonService.currentList.slice(
+                    0,
+                    commonService.sliceMax
+                  );
+                  index as i;
+                  trackBy: commonService.trackByItem
+                "
+                class="nav-wrapper"
+              >
+                <app-toolbar-title
+                  [dataSource]="item"
+                  (onCollapse)="commonService.onCollapse(item)"
+                />
+
+                <div
+                  class="card-grid"
+                  [class.hidden]="item['collapsed']"
+                >
+                  <app-card
+                    *ngFor="
+                      let el of item.nav;
+                      trackBy: commonService.trackByItemWeb
+                    "
+                    [cardStyle]="commonService.settings().lightCardStyle"
+                    [dataSource]="el"
+                    class="nav-card"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <ng-template #noData>
+              <app-no-data />
+            </ng-template>
+          </div>
+        </section>
+      </main>
+
+
+    </div>
+
+    <app-sidebar class="mobile-sidebar" />
+    <app-footer [content]="commonService.settings().lightFooterHTML" />
+    <app-fixbar
+      (onCollapse)="commonService.onCollapseAll()"
+      [collapsed]="commonService.collapsed"
+      selector=".main"
+    />
+  </div>
+</div>

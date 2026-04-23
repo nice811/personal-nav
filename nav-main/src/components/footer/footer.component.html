@@ -1,0 +1,12 @@
+<footer id="app-footer" class="footer" [class]="className">
+  <div class="footer-inner">
+    <div
+      class="copyright"
+      *ngIf="footerContent"
+      [innerHTML]="footerContent | safeHtml"
+    ></div>
+    <div class="copyright-default" *ngIf="!footerContent">
+      © 2026 AI工具导航站 版权所有
+    </div>
+  </div>
+</footer>
