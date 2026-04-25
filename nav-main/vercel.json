@@ -21,9 +21,9 @@
       "src": "package.json",
       "use": "@vercel/static-build",
       "config": {
-        "distDir": "dist/browser"
+        "distDir": "dist"
       }
     }
   ],
-  "outputDirectory": "dist/browser"
+  "outputDirectory": "dist"
 }
