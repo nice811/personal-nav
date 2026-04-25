@@ -1,4 +1,4 @@
-﻿﻿﻿import { isSelfDevelop } from 'src/utils/utils'
+﻿﻿﻿﻿﻿import { isSelfDevelop } from 'src/utils/utils'
 
 const zhCN: Record<string, any> = {
   _loading: '加载中...',
