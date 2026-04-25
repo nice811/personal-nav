@@ -27,7 +27,7 @@ function getBaseUrl() {
   } else if (getIsGitee(config.gitRepoUrl)) {
     return giteeBaseURL
   }
-  return gitHubBaseURL
+  return ''
 }
 
 export function getImageBaseUrl() {
@@ -36,7 +36,7 @@ export function getImageBaseUrl() {
   } else if (getIsGitee(config.imageRepoUrl)) {
     return giteeBaseURL
   }
-  return gitHubBaseURL
+  return ''
 }
 
 const httpInstance = axios.create({
