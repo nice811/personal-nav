@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿import { isSelfDevelop } from 'src/utils/utils'
+﻿﻿﻿﻿﻿﻿﻿﻿﻿import { isSelfDevelop } from 'src/utils/utils'
 
 const english: Record<string, any> = {
   _loading: 'Loading...',
