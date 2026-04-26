@@ -52,6 +52,24 @@
     }
   }
 
+  .language-switch-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 12px;
+  }
+
+  .language-text {
+    font-size: 14px;
+    color: #666;
+    white-space: nowrap;
+  }
+
+  .common-show:nth-child(3) {
+    width: auto;
+    border-radius: 20px;
+  }
+
   .scrolltop {
     visibility: hidden;
     opacity: 0;

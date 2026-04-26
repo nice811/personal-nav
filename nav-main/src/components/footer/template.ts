@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿const t: Record<string, any> = {
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿const t: Record<string, any> = {
   footTemplate1: `
 <div class="bg-white py-8 px-4 mx-auto text-left dark-bg dark-border-color">
   <div

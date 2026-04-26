@@ -80,14 +80,17 @@
     class="common-show wrapper dark-bg dark-border-color dark-action-hover"
     (click)="toggleLocale()"
   >
-    <img
-      class="iconfont"
-      src="assets/img/china.svg"
-      *ngIf="language === 'zh-CN'; else en"
-    />
-    <ng-template #en>
-      <img class="iconfont" src="assets/img/ua.svg" />
-    </ng-template>
+    <div class="language-switch-content">
+      <img
+        class="iconfont"
+        src="assets/img/china.svg"
+        *ngIf="language === 'zh-CN'; else en"
+      />
+      <ng-template #en>
+        <img class="iconfont" src="assets/img/ua.svg" />
+      </ng-template>
+      <span class="language-text">{{ language === 'zh-CN' ? '中文' : 'English' }}</span>
+    </div>
   </div>
 
   <div
